@@ -99,6 +99,44 @@ Setelah login, pengguna diarahkan ke halaman utama (/home) menggunakan router: <
 </ol>
 <br> <br>
 
+<b> Penjelasan Alur dari Login hingga Profil ditampilkan </b> <br> <br>
+<ol>
+  <li><b>Login dengan Google</b></li>
+  Setelah berhasil login, data pengguna (seperti displayName, email, dan photoURL) disimpan oleh store (dalam hal ini authStore). Data ini dapat diakses di berbagai halaman, termasuk halaman profil. Contoh pada store: <br>
+  <b>user.value = result.user; // Menyimpan data user dari Firebase
+</b> <br> <br>
+  <li><b>Menampilkan Data di Halaman Profil</b></li>
+  Halaman profil membaca data pengguna dari authStore menggunakan computed property: <br>
+  <b>const user = computed(() => authStore.user); <br>
+const userPhoto = ref(user.value?.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg');
+</b> <br>
+  Data ini kemudian dihubungkan ke elemen-elemen berikut di template: <br>
+<ul> <li><b>Foto profil: :src="userPhoto"</b></li>
+    <li><b>Nama: :value="user?.displayName"</b></li>
+  <li><b>Email: :value="user?.email"</b></li>
+</ul> <br> <br>
+  
+  <li><b>Menangani Gambar Error</b></li>
+    Jika gambar profil gagal dimuat, fungsi handleImageError akan mengganti avatar dengan gambar default: <br>
+    <b>function handleImageError() {
+    userPhoto.value = 'https://ionicframework.com/docs/img/demos/avatar.svg';
+}
+</b> <br>
+
+<li> <b> Navigasi Antar Tab</b></b></li>
+Menu navigasi di bagian bawah halaman memungkinkan pengguna berpindah antara halaman Home dan Profile.
+Hal ini diimplementasikan menggunakan komponen < TabsMenu />, seperti berikut:<br>
+  <b>< TabsMenu />
+</b> <br> <br>
+  <li><b>Fungsi Logout</b></li>
+    Jika tombol Logout ditekan, fungsi logout akan dipanggil untuk menghapus data pengguna dari store: <br>
+    <b>const logout = () => { <br>
+    authStore.logout();<br>
+}; <br>
+</b>
+    Aplikasi kemudian akan mengarahkan pengguna kembali ke halaman login.
+</ol>
+
 
 
 
