@@ -135,7 +135,112 @@ Hal ini diimplementasikan menggunakan komponen < TabsMenu />, seperti berikut:<b
 }; <br>
 </b>
     Aplikasi kemudian akan mengarahkan pengguna kembali ke halaman login.
+</ol> <br>
+<br>
+
+# Penjelasan CRUD pada aplikasi To-Do-List <br>
+
+<ol>
+  <li><b> Create </b></b></li>
+  Operasi ini dilakukan melalui modal input: <br>
+<img src="https://github.com/user-attachments/assets/60306e28-7ef2-4a07-94f7-ad2682b5fc59" width="200"> 
+<img src="https://github.com/user-attachments/assets/13c276c0-f436-4097-9075-d3f09359d219" width="250">
+<br>
+  <br> <br>
+<ul>
+  <li><b>Function:</b> handleSubmit</li><br>
+  <li><b>Proses:</b></li>
+  <ul>
+  <li>Jika editingId bernilai null, berarti sedang menambah todo baru.</li>
+  <li>Data yang dikirimkan (title, description) akan diteruskan ke fungsi firestoreService.addTodo untuk ditambahkan ke database.</li>
+  <li>Setelah berhasil, fungsi akan memuat ulang daftar todo dengan loadTodos().</li>
+  </ul> <br>
+
+  <li><b>Validasi:</b></li>
+  Jika title kosong, akan muncul notifikasi bahwa input diperlukan (showToast dengan pesan "Title is required"). <br> <br>
+  
+  <li><b>Notifikasi Sukses:</b> Pesan "Todo added successfully".</li>
+</ul>
+<br> <br>
+
+<li><b>Read (Membaca Daftar To-Do)</b></li>
+Operasi ini memuat data dari database dan menampilkan daftar todo yang aktif dan selesai. <br> <br>
+
+<img src="https://github.com/user-attachments/assets/2db68628-22b0-4a84-86b9-c0ece681a51e" width="250">
+<img src="https://github.com/user-attachments/assets/9af79d9a-fcf7-4d1e-8677-102cdf219658" width="250">
+<br> <br>
+
+<ul><li>
+  <b>Function:</b> loadTodos
+</li> <br>
+<li><b>Proses:</b></li>
+<ul><li>Mengambil data menggunakan firestoreService.getTodos.</li>
+<li>Memisahkan data ke dalam dua kelompok dengan bantuan computed properties:</li>
+  activeTodos untuk todo yang belum selesai (status=false).<br>
+  completedTodos untuk todo yang sudah selesai (status=true). <br>
+<li>Data ini di-render di elemen < ion-list > menggunakan direktif v-for.
+</li> <br>
+</ul>
+<br>
+</ul>
+<br> <br>
+
+<li><b>Update (Memperbarui To-Do)</b></li> <br>
+<img src="https://github.com/user-attachments/assets/db9e44e7-85df-4a1d-b2d6-85364804f7f3" width="250"> 
+<img src="https://github.com/user-attachments/assets/cebc21ae-1681-418d-8cec-3cbfa3ff0fb2" width="250">
+<img src="https://github.com/user-attachments/assets/eb2e1c94-3cee-4788-b36a-40a65f28a8c1" width="250"> <br> <br>
+
+<ol type="a">
+  <li><b>Mengedit To-Do</b></li> <br>
+  <ul>
+    <li><b>Function:</b> handleEdit</li> <br>
+    <li><b>Proses</b></li>
+    <ul> <li>Membuka modal input dengan data yang akan diubah.</li>
+      <li>Menutup elemen ion - item - sliding yang sedang terbuka.</li>
+      <li>Mengisi variabel todo dengan data yang ada untuk di-edit.</li>
+      <li>Menandai ID todo yang diedit di editingId.</li>
+      <li>Setelah diedit, perubahan disimpan melalui fungsi handleSubmit yang memanggil firestoreService.updateTodo.</li>
+    </ul>
+    <br>
+    <li><b>Notifikasi Sukses:</b> Pesan "Todo updated successfully".</li>
+  </ul> <br>
+<li><b>Mengubah Status To-Do</b></li>
+  <ul>
+    <li><b>Function: handleStatus</b></li> <br>
+    <li><b>Proses</b></li>
+    <ul> 
+      <li>Menutup elemen ion - item - sliding.</li>
+      <li>Mengubah status menjadi kebalikan dari status saat ini:</li>
+      Jika false, maka akan diubah menjadi true (completed). <br>
+      Jika true, maka akan diubah menjadi false (active).<br>
+      <li>Memanggil firestoreService.updateStatus untuk menyimpan perubahan.</li>
+      <li>Memuat ulang daftar todo setelah berhasil.</li>
+    </ul> <br>
+    <li>Notifikasi Sukses: Pesan "Todo marked as completed/active".</li>
+  </ul>
 </ol>
+<br>
+
+<li><b>Delete (Menghapus To-Do)</b></li>
+Operasi ini menghapus todo dari database. <BR> <BR>
+
+<img src="https://github.com/user-attachments/assets/d0b4cf71-60a2-4e7d-a0c9-995803823fa5" width="250">
+<img src="https://github.com/user-attachments/assets/cf82801d-f07c-467d-a5bd-642f02096aad" width="250">
+<br> <br>
+
+<ul><li>
+  <b>Function:</b> handleDelete
+</li> <br>
+<li><b>Proses:</b></li>
+  <ul><li>Menutup elemen ion - item - sliding.</li>
+  <li>Memanggil fungsi firestoreService.deleteTodo dengan ID todo yang akan dihapus.</li>
+  <li>Memuat ulang daftar todo setelah berhasil.</li>
+</ul> <br>
+  <li>Notifikasi Sukses: Pesan "Todo deleted successfully".</li>
+</ul>
+
+</ol>
+
 
 
 
