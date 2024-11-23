@@ -240,8 +240,41 @@ Operasi ini menghapus todo dari database. <BR> <BR>
 </ul>
 
 </ol>
+<br>
+<br>
+<br>
+
+# Build Ionic ke APK <br>
+
+<ol>
+ <b><li>Tambahkan Platform Android pada Ionic</li></b>
+ Jalankan perintah berikut pada proyek Ionic: <br>
+ <b>ionic capacitor add android</b> <br> <br> 
+ <img src="https://github.com/user-attachments/assets/819c17bf-c203-409c-b987-8b151d2e108d" width="700"> <br>
+ Ket: terjadi error karena sudah terinstall sebelumnya/ sudah dijalankan perintahnya sebelumnya. <br> <br>
+
+<b><li>Build Proyek untuk Produksi</li></b>
+Jalankan perintah berikut pada proyek ionic: <br>
+<b>ionic build --prod</b> <br>
+<img src="https://github.com/user-attachments/assets/8b2f5827-1525-49b8-a9af-5fc1cbc8cee1" width="650"> <br> <br>
+Jika Sudah Selesai, jalankan perintah berikut: <br>
+<b>ionic capacitor copy android</b> <br>
+<img src="https://github.com/user-attachments/assets/afac79c9-6c27-4b07-bd40-9fc4799f9278" width="650"> <br> <br>
+
+<b><li>Bangun APK dengan CLI</li></b>
+<ol><li>Navigasi ke folder proyek Android:</li>
+  <b>cd android</b> <br>
+<li>Install dependensi Gradle jika belum ada:</li>
+ <b>./gradlew
+</b> <br>
+ 
+</ol>
 
 
+
+
+
+</ol>
 
 
 
