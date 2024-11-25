@@ -264,9 +264,29 @@ Jika Sudah Selesai, jalankan perintah berikut: <br>
 <b><li>Bangun APK dengan CLI</li></b>
 <ol><li>Navigasi ke folder proyek Android:</li>
   <b>cd android</b> <br>
+ <img src="https://github.com/user-attachments/assets/cde7a17f-ca50-4b26-9d4a-656e1d319438" width="600"> <br> <br>
+
 <li>Install dependensi Gradle jika belum ada:</li>
  <b>./gradlew
 </b> <br>
+<img src="https://github.com/user-attachments/assets/3edfbde8-f91e-4999-8bcc-452ff69f73f8" width="600"> <br> <br>
+
+<li>Build APK: Jalankan perintah berikut untuk membuat file APK:</li>
+<b>./gradlew assembleDebug</b> <br>
+<img src="https://github.com/user-attachments/assets/fa6c90df-c143-47a4-9d04-1eaa6d059e3a" width="600"> <br> <br>
+APK akan tersedia di: <br>
+android/app/build/outputs/apk/debug/app-debug.apk <br>
+<img src="https://github.com/user-attachments/assets/aed6e4fe-74e4-4cb5-ac3e-8f3b681e2e70" width="600"> <br> <br>
+</ol>
+
+<b><li>Tes APK</li></b>
+Transfer file APK ke perangkat Android atau gunakan emulator pihak ketiga seperti Genymotion untuk menjalankan aplikasi tanpa Android Studio.
+
+
+
+
+
+
  
 </ol>
 
